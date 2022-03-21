@@ -1,8 +1,17 @@
-const { sequelize, Usuario } = require('../models');
+const { sequelize, usuario } = require('../models');
 
-Usuario.findAll().then(
+usuario.findAll().then(
     data => {
         console.log(data.map( u => u.toJSON()));
         sequelize.close();
     }
 )
+
+/*usuario.create(
+    {
+        nome:"Lucas",
+        email:"lucas@ibm.com",
+        senha:"aleatória"
+    }
+)
+*/

@@ -1,6 +1,6 @@
-const { sequelize, Comentario } = require('../models');
+const { sequelize, comentario } = require('../models');
 
-Comentario.findAll().then(
+comentario.findAll().then(
     data => {
         console.log(data.map( u => u.toJSON()));
         sequelize.close();
