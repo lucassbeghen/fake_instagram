@@ -1,8 +1,8 @@
-const { sequelize, Post } = require('../models');
+const { sequelize, Post, comentario } = require('../models');
 
-Post.findAll({include:['comentarios','usuario']}).then(
+Post.findAll({include:[{model: comentario, as:'comentarios', include:'usuario'},'usuario']}).then(
     dados => {
-        console.log(dados[0].toJSON());
+        console.log(JSON.stringify(dados[0].toJSON()));
         sequelize.close();
     }
 )
