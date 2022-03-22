@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     )
 
     post.associate = (models)=>{
-        post.hasMany(models.comentario,{foreignKey:'posts_id', as:'comentarios'})
+        post.hasMany(models.comentario,{foreignKey:'posts_id', as:'comentarios'}),
+        post.belongsTo(models.usuario,{foreignKey:'usuarios_id', as:'usuario'})
     }
 
     return post;
