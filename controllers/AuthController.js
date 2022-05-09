@@ -1,3 +1,5 @@
+const { usuario } = require('../models');
+
 const AuthController = {
     
     showLogin: (req,res) => {
@@ -10,6 +12,19 @@ const AuthController = {
 
     showHome: (req,res) => {
         res.render('index');
+    },
+
+    validacaoRegistro: async (req,res) => {
+        //capturando nome, email e senha da requisição
+        let {nome, email, senha} = req.body;
+
+        // adicionar um novo usuário no banco de dados
+        let Usuario = await usuario.create(
+            {nome, email, senha}
+        )
+
+        //Direcionar o usuário para a rota /home
+        res.redirect('/home');
     }
 
 

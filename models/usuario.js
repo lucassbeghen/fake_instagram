@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 
-    return sequelize.define(
+    let usuario = sequelize.define(
         'usuario',
         {
             id:{
@@ -28,5 +28,11 @@ module.exports = (sequelize, DataTypes) => {
         }
 
     )
-    
+
+    usuario.associate = (models)=>{
+        usuario.hasMany(models.Post,{foreignKey:'usuarios_id', as:'posts'}),
+        usuario.belongsToMany(models.usuario,{as:'amigos', through:'amizades', timestamps:false, foreignKey:'id_usuario1', otherKey:'id_usuario2'});
+    }
+
+    return usuario;
 }
